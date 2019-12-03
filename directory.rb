@@ -31,7 +31,7 @@ students
 end
 
 def print_header
-  puts "The students of Villains Academy"
+  puts "The students of Villains Academy".center(100)
   puts "-------------"
 end
 def print(students)
