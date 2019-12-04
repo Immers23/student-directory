@@ -77,6 +77,7 @@ def print_footer(students)
     puts "we have one great student"
   else
     puts "Overall, we have #{students.count} great students"
+  end
 end
 
 
