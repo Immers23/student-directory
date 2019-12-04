@@ -58,6 +58,8 @@ def print(students)
     end
 end
 
+
+
 def print_by_cohort(students)
 
 puts "what cohort would you like to print"
@@ -82,10 +84,36 @@ def print_footer(students)
   end
 end
 
+def interactive_menu
+  students = []
+  loop do
+    # 1. print the menu and ask the user what to do
+    puts "1. Input the student"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit
+    else
+      puts "I dont know what you meant, try again"
+    end
+    end
+
+  end
 
 # nothing happens until we call the methods
-students = input_students
-print_header
-print(students)
-print_footer(students)
-print_by_cohort(students)
+interactive_menu
+# students = input_students
+# print_header
+# print(students)
+# print_footer(students)
+# print_by_cohort(students)
