@@ -1,3 +1,4 @@
+@students = []
 def input_students
 
 months = { "" => :none,
@@ -14,7 +15,7 @@ months = { "" => :none,
   "November" => :november,
   "December" => :december}
 
-students = []
+
 while true do
 
   puts "would you like to add another student yes or no"
@@ -34,14 +35,12 @@ while true do
         cohort = months[gets.capitalize.strip]
       end
 
-    students << {name: name, cohort: cohort}
+    @students << {name: name, cohort: cohort}
 
     else
     break
   end
-
 end
-students
 
 end
 
@@ -50,22 +49,22 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
+def print
     count = 0
-    until count == students.length
-    puts "#{students[count][:name]}, #{students[count][:cohort]}"
+    until count == @students.length
+    puts "#{@students[count][:name]}, #{@students[count][:cohort]}"
     count += 1
     end
 end
 
 
 
-def print_by_cohort(students)
+def print_by_cohort
 
 puts "what cohort would you like to print"
 print = gets.strip.downcase
 
-students.each do |hash|
+@students.each do |hash|
 puts hash[:name] if hash[:cohort] == print.to_sym
 
 end
@@ -74,41 +73,47 @@ end
 
 
 
-def print_footer(students)
-  if students.length == 1
+def print_footer
+  if @students.length == 1
     puts "we have one great student"
-  elsif students.length == 0
+  elsif @students.length == 0
     puts "we have no students"
   else
-    puts "Overall, we have #{students.count} great students"
+    puts "Overall, we have #{@students.count} great students"
+  end
+end
+
+def print_menu
+  puts "1. Input the student"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print
+  print_footer
+end
+
+def process(selection)
+  case selection
+    when "1"
+      input_students
+    when "2"
+      show_students
+    when "9"
+      exit
+    else
+      puts "I don't know what you mean, try again"
   end
 end
 
 def interactive_menu
-  students = []
   loop do
-    # 1. print the menu and ask the user what to do
-    puts "1. Input the student"
-    puts "2. Show the students"
-    puts "9. Exit"
-
-    selection = gets.chomp
-
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      print_header
-      print(students)
-      print_footer(students)
-    when "9"
-      exit
-    else
-      puts "I dont know what you meant, try again"
-    end
-    end
-
+    print_menu
+    process(gets.chomp)
   end
+end
 
 # nothing happens until we call the methods
 interactive_menu
