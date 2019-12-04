@@ -49,6 +49,7 @@ def print_header
   puts "The students of Villains Academy".center(100)
   puts "-------------"
 end
+
 def print(students)
     count = 0
     until count == students.length
@@ -57,10 +58,23 @@ def print(students)
     end
 end
 
+def print_by_cohort(students)
+
+puts "what cohort would you like to print"
+print = gets.chomp.downcase
+
+students.each do |hash|
+puts hash[:name] if hash[:cohort] == print.to_sym
+
+end
+
+end
+
+
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
-
 
 
 # nothing happens until we call the methods
@@ -68,3 +82,4 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+print_by_cohort(students)
