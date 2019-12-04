@@ -18,20 +18,20 @@ students = []
 while true do
 
   puts "would you like to add another student yes or no"
-  answer = gets.chomp
+  answer = gets.strip
   if answer == "yes"
 
     puts "what is the name of the person"
-    name = gets.chomp
+    name = gets.strip
     if name.empty?
       name = "None"
     end
 
     puts "what cohort is this person from"
-    cohort = months[gets.capitalize.chomp]
+    cohort = months[gets.capitalize.strip]
       while cohort == nil
         puts "please type your cohort month again"
-        cohort = months[gets.capitalize.chomp]
+        cohort = months[gets.capitalize.strip]
       end
 
     students << {name: name, cohort: cohort}
@@ -61,7 +61,7 @@ end
 def print_by_cohort(students)
 
 puts "what cohort would you like to print"
-print = gets.chomp.downcase
+print = gets.strip.downcase
 
 students.each do |hash|
 puts hash[:name] if hash[:cohort] == print.to_sym
